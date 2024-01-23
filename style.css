@@ -98,18 +98,42 @@ body.darkActive .calculator {
     color: #818181;
     font-size: 24px;
     font-weight: 300;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .calculator .display .operation .sinal {
     color: #109DFF;
 }
 
+.calculator .display .operation::-webkit-scrollbar {
+    height: 4px;
+}
+
+.calculator .display .operation::-webkit-scrollbar-thumb {
+    background-color: #ADE2FF;
+    border-radius: 6px;
+}
+
 .calculator .display .result {
+    max-width: 100%;
     text-align: right;
     font-family: Poppins;
     font-size: 48px;
     font-style: normal;
     font-weight: 500;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.calculator .display .result::-webkit-scrollbar {
+    height: 6px;
+}
+
+.calculator .display .result::-webkit-scrollbar-thumb {
+    background-color: #1BACFF;
+    border-radius: 6px;
 }
 
 body.darkActive .display .result {
@@ -191,6 +215,16 @@ body.darkActive .calculator .keyboard .container .left .button.clean {
     color: #A5A5A5;
 }
 
+.calculator .keyboard .container .left .button.clean svg {
+    width: 20px;
+    height: 20px;
+}
+
+body.darkActive .calculator .keyboard .container .left .button.clean svg {
+    width: 24px;
+    height: 24px;
+}
+
 .calculator .keyboard .container .left .button.bigger {
     width: 144px;
 }
@@ -250,6 +284,19 @@ body.darkActive .calculator .keyboard .container .right .button.bigger:nth-last-
         height: 712px;
         padding: 121px 28.93px 35.07px 28.93px;
     }
+    .calculator .display .operation {
+        height: 30.68px;
+        font-size: 21.04px;
+    }
+    .calculator .display .result {
+        font-size: 42.08px;
+    }
+    .calculator .display .operation::-webkit-scrollbar {
+        height: 2px;
+    }
+    .calculator .display .result::-webkit-scrollbar {
+        height: 3px;
+    }
     .calculator .keyboard {
         gap: 17.53px;
         padding-top: 68.39px;
@@ -257,14 +304,24 @@ body.darkActive .calculator .keyboard .container .right .button.bigger:nth-last-
     .calculator .keyboard .button {
         width: 54.36px;
         height: 52.61px;
+        font-size: 28.05px;
     }
     .calculator .keyboard .secondaryOperators .button.small {
         width: 54.36px;
         height: 35.07px;
+        font-size: 15.78px;
     }
     .calculator .keyboard .container .left {
         width: 198.16px;
         gap: 17.53px;
+    }
+    .calculator .keyboard .container .left .button.clean svg {
+        width: 17.53px;
+        height: 17.53px;
+    }    
+    body.darkActive .calculator .keyboard .container .left .button.clean svg {
+        width: 17.53px;
+        height: 17.53px;
     }
     .calculator .keyboard .container .left .button.bigger {
         width: 126.26px;
