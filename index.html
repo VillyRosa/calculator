@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="shortcut icon" href="icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="bollMark blue"></div>
+    <div class="bollMark white"></div>
+
+    <div class="calculator">
+        <button class="darkMode light" onclick="toggleDarkMode()">
+            <svg class="light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+            <svg class="dark hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>              
+        </button>
+        <div class="display">
+            <p class="operation"></p>
+            <h1 class="result">=<span id="value">0</span></h1>
+        </div>
+        <div class="keyboard">
+            <div class="secondaryOperators">
+                <button class="button small">e</button>
+                <button class="button small">μ</button>
+                <button class="button small">sin</button>
+                <button class="button small">deg</button>
+            </div>
+            <div class="container">
+                <div class="left">
+                    <button class="button clean" onclick="textDisplay=0; calcResult(); textDisplay = ''; updateDisplay()">Ac</button>
+                    <button class="button clean" onclick="textDisplay = textDisplay.slice(0, textDisplay.length-1); updateDisplay()">
+                        <svg class="backspaceLight" width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.5353 1.11994e-08H21.0003C21.2655 1.11994e-08 21.5199 0.105357 21.7074 0.292893C21.8949 0.48043 22.0003 0.734784 22.0003 1V17C22.0003 17.2652 21.8949 17.5196 21.7074 17.7071C21.5199 17.8946 21.2655 18 21.0003 18H6.5353C6.37071 18 6.20865 17.9594 6.06352 17.8818C5.91838 17.8042 5.79465 17.6919 5.7033 17.555L0.370298 9.555C0.260659 9.39067 0.202148 9.19755 0.202148 9C0.202148 8.80245 0.260659 8.60933 0.370298 8.445L5.7033 0.445C5.79465 0.308084 5.91838 0.195832 6.06352 0.118205C6.20865 0.0405779 6.37071 -2.46193e-05 6.5353 1.11994e-08ZM7.0703 2L2.4043 9L7.0703 16H20.0003V2H7.0703ZM13.0003 7.586L15.8283 4.757L17.2433 6.172L14.4143 9L17.2433 11.828L15.8283 13.243L13.0003 10.414L10.1723 13.243L8.7573 11.828L11.5863 9L8.7573 6.172L10.1723 4.757L13.0003 7.586Z" fill="#858585"/>
+                        </svg>
+                        <svg class="backspaceDark hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6.53481 3H20.9998C21.265 3 21.5194 3.10536 21.7069 3.29289C21.8945 3.48043 21.9998 3.73478 21.9998 4V20C21.9998 20.2652 21.8945 20.5196 21.7069 20.7071C21.5194 20.8946 21.265 21 20.9998 21H6.53481C6.37022 21 6.20816 20.9594 6.06303 20.8818C5.91789 20.8042 5.79416 20.6919 5.70281 20.555L0.36981 12.555C0.260171 12.3907 0.20166 12.1975 0.20166 12C0.20166 11.8025 0.260171 11.6093 0.36981 11.445L5.70281 3.445C5.79416 3.30808 5.91789 3.19583 6.06303 3.11821C6.20816 3.04058 6.37022 2.99998 6.53481 3ZM7.06981 5L2.40381 12L7.06981 19H19.9998V5H7.06981ZM12.9998 10.586L15.8278 7.757L17.2428 9.172L14.4138 12L17.2428 14.828L15.8278 16.243L12.9998 13.414L10.1718 16.243L8.75681 14.828L11.5858 12L8.75681 9.172L10.1718 7.757L12.9998 10.586Z" fill="#A5A5A5"/>
+                        </svg>                           
+                    </button>
+                    <button class="button operator" onclick="textDisplay+='<span class=sinal>/</span>'; updateDisplay()">
+                        <svg width="12" height="27" viewBox="0 0 12 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0L3.47781 27H0L8.52219 0H12Z" fill="#109DFF"/>
+                        </svg>                     
+                    </button>
+                    <button class="button" onclick="textDisplay+='7'; updateDisplay()">7</button>
+                    <button class="button" onclick="textDisplay+='8'; updateDisplay()">8</button>
+                    <button class="button" onclick="textDisplay+='9'; updateDisplay()">9</button>
+                    <button class="button" onclick="textDisplay+='4'; updateDisplay()">4</button>
+                    <button class="button" onclick="textDisplay+='5'; updateDisplay()">5</button>
+                    <button class="button" onclick="textDisplay+='6'; updateDisplay()">6</button>
+                    <button class="button" onclick="textDisplay+='1'; updateDisplay()">1</button>
+                    <button class="button" onclick="textDisplay+='2'; updateDisplay()">2</button>
+                    <button class="button" onclick="textDisplay+='3'; updateDisplay()">3</button>
+                    <button class="button bigger" onclick="textDisplay+='0'; updateDisplay()">0</button>
+                    <button class="button" onclick="textDisplay+='.'; updateDisplay()">.</button>
+                </div>
+                <div class="right">
+                    <button class="button operator" onclick="textDisplay+='<span class=sinal>*</span>'; updateDisplay()">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5561 1.81915L12 4.37234L7.60428 6L12 7.59575L10.5241 10.2447L6.86631 7.34043L7.57219 12H4.58824L5.22995 7.34043L1.54011 10.3085L0 7.59575L4.36364 5.96809L0.0320855 4.37234L1.47594 1.78724L5.22995 4.65957L4.55615 0H7.57219L6.86631 4.65957L10.5561 1.81915Z" fill="#109DFF"/>
+                        </svg>                          
+                    </button>
+                    <button class="button operator" onclick="textDisplay+='<span class=sinal>-</span>'; updateDisplay()">-</button>
+                    <button class="button operator bigger" onclick="textDisplay+='<span class=sinal>+</span>'; updateDisplay()">+</button>
+                    <button class="button operator bigger" onclick="calcResult();">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

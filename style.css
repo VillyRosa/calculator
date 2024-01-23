@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    background: #DAF0FF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bollMark {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.bollMark.blue {
+    background: #38B9FF;
+
+    bottom: 0;
+    left: 0;
+    margin: 0 0 4% 5%;
+}
+
+.bollMark.white {
+    background: #FFF;
+
+    top: 0;
+    right: 0;
+    margin: 8% 3% 0 0;
+}
+
+.calculator {
+    width: 375px;
+    height: 812px;
+
+    padding: 138px 33px 40px 33px;
+    border-radius: 39px;
+    background: #F7F8FB;
+    backdrop-filter: blur(51px);
+    box-shadow: 90px 100px 80px 0px rgba(0, 162, 255, 0.463);
+}
+
+body.darkActive .calculator {
+    background: linear-gradient(191deg, #17181A -4.95%, #17181A 103.74%);
+}
+
+.calculator .darkMode {
+    position: absolute;
+    width: 34px;
+    padding: 6px;
+    margin-top: 30px;
+    top: 0;
+    background: none;
+    border: 1px solid rgb(242, 227, 25);
+    border-radius: 6px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator .darkMode.light {
+    border-color: rgb(242, 227, 25);
+}
+
+.calculator .darkMode.dark {
+    border-color: #0e60ad;
+}
+
+.calculator .darkMode .light {
+    color: rgb(242, 227, 25);
+}
+
+.calculator .darkMode .dark {
+    color: #2486e3;
+}
+
+.calculator .display {
+    width: 100%;
+}
+
+.calculator .display .operation {
+    height: 35px;
+    text-align: right;
+    color: #818181;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.calculator .display .operation .sinal {
+    color: #109DFF;
+}
+
+.calculator .display .result {
+    text-align: right;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+body.darkActive .display .result {
+    color: #FFF;
+}
+
+.calculator .keyboard {
+    width: 100%;
+    padding-top: 78px;
+
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator .keyboard .button {
+    width: 62px;
+    height: 60px;
+
+    color: #38B9FF;
+    font-weight: 500;
+    font-size: 32px;
+
+    border-radius: 16px;
+    border: 1px solid #FFF;
+    background: linear-gradient(130deg, rgba(255, 255, 255, 0.60) -9.69%, rgba(255, 255, 255, 0.40) 114.23%);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.darkActive .calculator .keyboard .button {
+    background: #303136;
+    border: none;
+}
+
+.calculator .keyboard .secondaryOperators {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calculator .keyboard .secondaryOperators .button.small {
+    width: 62px;
+    height: 40px;
+
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.calculator .keyboard .container {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.calculator .keyboard .container .left {
+    width: 226px;
+
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.calculator .keyboard .container .left .button.clean {
+    color: #858585;
+    font-weight: 400;
+}
+
+body.darkActive .calculator .keyboard .container .left .button.clean {
+    background: #616161;
+    color: #A5A5A5;
+}
+
+.calculator .keyboard .container .left .button.bigger {
+    width: 144px;
+}
+
+.calculator .keyboard .container .left .button:nth-child(3) {
+    background: #ADE2FF;
+}
+
+body.darkActive .calculator .keyboard .container .left .button:nth-child(3) {
+    background: #005DB2;
+}
+
+.calculator .keyboard .container .right {
+    width: 62px;
+    height: 100%;
+
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator .keyboard .container .right .button {
+    border-radius: 12px;
+    background: #ADE2FF;
+    color: #109DFF;
+}
+
+body.darkActive .calculator .keyboard .container .right .button {
+    background: #005DB2;
+}
+
+.calculator .keyboard .container .right .button.bigger {
+    height: 96px;
+}
+
+.calculator .keyboard .container .right .button.bigger:nth-last-child(1) {
+    background: #19ACFF;
+    box-shadow: -9px 13px 23px 0px rgba(0, 163, 255, 0.65), -3px 4px 11px 0px #B0DFFF inset;
+    border-color: transparent;
+    border: none;
+    color: #B2DAFF;
+}
+
+body.darkActive .calculator .keyboard .container .right .button.bigger:nth-last-child(1) {
+    background: #1991FF;
+    box-shadow: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .bollMark { display: none; }
+    .calculator {
+        width: 328.8px;
+        height: 712px;
+        padding: 121px 28.93px 35.07px 28.93px;
+    }
+    .calculator .keyboard {
+        gap: 17.53px;
+        padding-top: 68.39px;
+    }
+    .calculator .keyboard .button {
+        width: 54.36px;
+        height: 52.61px;
+    }
+    .calculator .keyboard .secondaryOperators .button.small {
+        width: 54.36px;
+        height: 35.07px;
+    }
+    .calculator .keyboard .container .left {
+        width: 198.16px;
+        gap: 17.53px;
+    }
+    .calculator .keyboard .container .left .button.bigger {
+        width: 126.26px;
+    }
+    .calculator .keyboard .container .right {
+        width: 54.36px;
+        gap: 17.53px;
+    }
+    .calculator .keyboard .container .right .button.bigger {
+        height: 84.17px;
+    }
+    .calculator .keyboard .container .right .button.bigger:nth-last-child(1) {
+        background: #19ACFF;
+        box-shadow: -5px 5px 20.16px 0px rgba(0, 163, 255, 0.65), -2.63px 3.50px 9.64px 0px #B0DFFF inset;
+        border-color: transparent;
+        border: none;
+        color: #B2DAFF;
+    }
+}
