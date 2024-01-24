@@ -1,11 +1,7 @@
 const resultDisplay = document.querySelector('#value');
 let textDisplay = '';
 
-window.addEventListener("load", () => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        toggleDarkMode();
-    }
-});
+window.addEventListener("load", () => toggleDarkMode(getDarkModePreferences()));
 
 function updateDisplay() {
     document.querySelector('.operation').innerHTML = textDisplay;
@@ -18,14 +14,35 @@ function calcResult() {
     resultDisplay.innerHTML = res;
 }
 
-function toggleDarkMode() {
-    document.querySelector('body').classList.toggle('darkActive');
-    document.querySelector('.darkMode').classList.toggle('light');
-    document.querySelector('.darkMode').classList.toggle('dark');
-    document.querySelector('svg.light').classList.toggle('hidden');
-    document.querySelector('svg.dark').classList.toggle('hidden');
-    document.querySelector('svg.backspaceLight').classList.toggle('hidden');
-    document.querySelector('svg.backspaceDark').classList.toggle('hidden');
+// DarkMode start's in light mode
+function toggleDarkMode(dark) {
+    document.querySelector('body').classList.toggle('darkActive', dark);
+    document.querySelector('.darkMode').classList.toggle('light', !dark);
+    document.querySelector('.darkMode').classList.toggle('dark', dark);
+    document.querySelector('svg.light').classList.toggle('hidden', dark);
+    document.querySelector('svg.dark').classList.toggle('hidden', !dark);
+    document.querySelector('svg.backspaceLight').classList.toggle('hidden', dark);
+    document.querySelector('svg.backspaceDark').classList.toggle('hidden', !dark);
+}
+
+function getDarkModePreferences() {
+    const darkModeSavedPreferences = JSON.parse(window.localStorage.getItem('darkMode'));
+
+    if (!darkModeSavedPreferences) {
+        let systemPreferences = false;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) systemPreferences = true;
+        window.localStorage.setItem('darkMode', JSON.stringify({ value: systemPreferences }));
+        return systemPreferences;
+    } else {
+        if (darkModeSavedPreferences.value) return true;
+    }    
+    
+    return false;
+}
+
+function toggleDarkModePreferences() {
+    const darkModeSavedPreferences = JSON.parse(window.localStorage.getItem('darkMode'));
+    window.localStorage.setItem('darkMode', JSON.stringify({ value: !darkModeSavedPreferences.value }));
 }
 
 function removeSpanTags(inputString) {
