@@ -1,6 +1,12 @@
 const resultDisplay = document.querySelector('#value');
 let textDisplay = '';
 
+window.addEventListener("load", () => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        toggleDarkMode();
+    }
+});
+
 function updateDisplay() {
     document.querySelector('.operation').innerHTML = textDisplay;
 }
