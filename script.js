@@ -3,42 +3,68 @@ let textDisplay = '';
 
 window.addEventListener("load", () => toggleDarkMode(getDarkModePreferences()));
 
-window.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", async (event) => {
     const key = event.key;
     if (key >= '0' && key <= '9') {
         textDisplay += key;
         updateDisplay();
-    } else if (key === '.' || key === ',') {
+    } else if (key === '.' || key === ',' || key === 'Decimal') {
         textDisplay += '.';
         updateDisplay();
     } else if (key === '+' || key === '-' || key === '*' || key === '/') {
         textDisplay += `<span class='sinal'>${key}</span>`;
         updateDisplay();
-    } else if (key === 'Backspace') {
+    } else if (key === 'Backspace' || key === 'Delete') {
         textDisplay = textDisplay.slice(0, -1);
         updateDisplay();
-    } else if (key === 'Enter') {
+    } else if (key === 'Enter' || key === 'Return') {
         calcResult();
     } else if (key === 'Escape') {
         textDisplay = '0';
         calcResult();
         textDisplay = '';
         updateDisplay();
+    } else if ((event.ctrlKey || event.metaKey) && key === 'v') {
+        const clipboardData = await navigator.clipboard.readText();
+        console.log(await navigator.clipboard.readText())
+        if (clipboardData) {
+            const pastedText = clipboardData.toString();
+            if (/^\d+$/.test(pastedText)) {
+                textDisplay += pastedText.replace(',', '.');
+                updateDisplay();
+            }
+        }
     }
 });
+
+function addCaracter(caracter) {
+    if (Number.isInteger(parseInt(caracter))) {
+        if (textDisplay === '0' && caracter === '0') return;
+        if (textDisplay === '0') textDisplay = '';
+        textDisplay += caracter;
+    } else if (textDisplay.length > 0 && !isNaN(textDisplay[textDisplay.length - 1])) {
+        if (caracter === '.') {
+            textDisplay += '.';
+        } else textDisplay += `<span class='sinal'>${caracter}</span>`;
+    }
+    updateDisplay();
+}
 
 function updateDisplay() {
     document.querySelector('.operation').innerHTML = textDisplay;
 }
 
 function calcResult() {
-    let res = eval(removeSpanTags(textDisplay));
+    let res = removeSpanTags(textDisplay);
+    while (res[res.length - 1] === '*' || res[res.length - 1] === '-' || res[res.length - 1] === '+' || res[res.length - 1] === '/') {
+        res = res.slice(0, -1);
+    }
+    res = eval(res);
     if (res === undefined) res = 'error';
     textDisplay = res;
     resultDisplay.innerHTML = res;
 }
 
-// DarkMode start's in light mode
 function toggleDarkMode(dark) {
     document.querySelector('body').classList.toggle('darkActive', dark);
     document.querySelector('.darkMode').classList.toggle('light', !dark);
