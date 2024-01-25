@@ -3,6 +3,30 @@ let textDisplay = '';
 
 window.addEventListener("load", () => toggleDarkMode(getDarkModePreferences()));
 
+window.addEventListener("keydown", (event) => {
+    const key = event.key;
+    if (key >= '0' && key <= '9') {
+        textDisplay += key;
+        updateDisplay();
+    } else if (key === '.' || key === ',') {
+        textDisplay += '.';
+        updateDisplay();
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        textDisplay += `<span class='sinal'>${key}</span>`;
+        updateDisplay();
+    } else if (key === 'Backspace') {
+        textDisplay = textDisplay.slice(0, -1);
+        updateDisplay();
+    } else if (key === 'Enter') {
+        calcResult();
+    } else if (key === 'Escape') {
+        textDisplay = '0';
+        calcResult();
+        textDisplay = '';
+        updateDisplay();
+    }
+});
+
 function updateDisplay() {
     document.querySelector('.operation').innerHTML = textDisplay;
 }
