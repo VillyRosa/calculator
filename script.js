@@ -44,7 +44,10 @@ function addCaracter(caracter) {
         textDisplay += caracter;
     } else if (textDisplay.length > 0 && !isNaN(textDisplay[textDisplay.length - 1])) {
         if (caracter === '.') {
-            textDisplay += '.';
+            if(!(textDisplay.split('.').length > 1)){
+
+                textDisplay += '.';
+            }
         } else textDisplay += `<span class='sinal'>${caracter}</span>`;
     }
     updateDisplay();
